@@ -1,29 +1,28 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: client-service
+  name: backend-service
+  namespace: production
 spec:
   ports:
-    - port: 80
+    - port: 4000
       protocol: TCP
-      targetPort: http-port
   selector:
-    app: client
+    app: server
 #  type: LoadBalancer
-
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: frontend-ingress
+  name: backend-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: frontend.rafifauz.site
+  - host: backend.rafifauz.site
     http:
       paths:
       #- path: /belajar
       - backend:
-          serviceName: client-service
-          servicePort: 80
+          serviceName: server-service
+          servicePort: 4000

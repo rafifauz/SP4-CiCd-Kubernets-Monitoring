@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-deployment
+  name: backend-deployment
+  namespace: production
 spec:
   replicas: 1
   template:
@@ -11,7 +12,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: raxer/back:latest
+          image: raxer/backend-sp4:latest
           ports:
             - containerPort: 4000
               name: nodejs-port
