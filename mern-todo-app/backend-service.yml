@@ -8,4 +8,20 @@ spec:
       protocol: TCP
   selector:
     app: server
-  type: LoadBalancer
+#  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: backend.rafifauz.site
+    http:
+      paths:
+      #- path: /belajar
+      - backend:
+          serviceName: server-service
+          servicePort: 4000

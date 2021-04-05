@@ -9,4 +9,21 @@ spec:
       targetPort: http-port
   selector:
     app: client
-  type: LoadBalancer
+#  type: LoadBalancer
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: frontend.rafifauz.site
+    http:
+      paths:
+      #- path: /belajar
+      - backend:
+          serviceName: client-service
+          servicePort: 80

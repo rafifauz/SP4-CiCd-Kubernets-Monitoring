@@ -8,4 +8,20 @@ spec:
       protocol: TCP
   selector:
     app: mongodb
-  type: LoadBalancer
+#  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mongo-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: mongo.rafifauz.site
+    http:
+      paths:
+      #- path: /belajar
+      - backend:
+          serviceName: mongodb-service
+          servicePort: 27017
