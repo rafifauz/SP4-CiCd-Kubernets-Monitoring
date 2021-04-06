@@ -33,8 +33,12 @@ spec:
           configMap:
             defaultMode: 420
             name: prometheus-server-conf
-  
+
         - name: prometheus-storage-volume
-          emptyDir: {}
+          #emptyDir: {}
           persistentVolumeClaim:
             claimName: pvc-prometheus
+      securityContext:
+        fsGroup: 2000
+        runAsNonRoot: true
+        runAsUser: 1000
