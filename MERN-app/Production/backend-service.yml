@@ -25,5 +25,5 @@ spec:
       paths:
       #- path: /belajar
       - backend:
-          serviceName: server-service
+          serviceName: backend-service
           servicePort: 4000
