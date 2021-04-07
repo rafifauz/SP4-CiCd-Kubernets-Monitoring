@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Docker Build Image') { 
             steps {
-                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_FRONTEND:${BUILD_NUMBER} ./MERN-app/"
-                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_BACKEND:${BUILD_NUMBER} ./MERN-app/backend"
+                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_FRONTEND:${BUILD_NUMBER} MERN-app/"
+                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_BACKEND:${BUILD_NUMBER} MERN-app/backend"
             }
         }
         stage('Push Docker Image') { 
