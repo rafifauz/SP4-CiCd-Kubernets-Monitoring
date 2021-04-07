@@ -1,10 +1,9 @@
+env.DOCKER_REGISTRY = credentials('raxer')
+env.DOCKER_IMAGE_FRONTEND = credentials('frontend-sp4')
+env.DOCKER_IMAGE_BACKEND = credentials('backend-sp4')
+
 pipeline {
-    agent any
-    environment {
-        DOCKER_REGISTRY = credentials('raxer')
-        DOCKER_IMAGE_FRONTEND = credentials('frontend-sp4')
-        DOCKER_IMAGE_BACKEND = credentials('backend-sp4')
-    } 
+    agent any 
     stages {
         stage('Hello World') { 
             steps {
