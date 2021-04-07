@@ -13,6 +13,7 @@ pipeline {
         stage('Get File Github') { 
             steps {
                 sh "echo 'HAHAHA'"
+                sh "ls -la"
             }
         }
         stage('Docker Build Image') { 
@@ -27,13 +28,13 @@ pipeline {
                 sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_BACKEND:${BUILD_NUMBER}"
             }
         }
-        stage('Deploy Image to Kubernetes') { 
-            steps {
-                sh """ sed -i 's;raxer/backend-sp4 ;raxer/frontend-sp4:${BUILD_NUMBER};g' ./MERN-app/backend/Production/backend-deployment.yml """
-                sh """ sed -i 's;raxer/backend-sp4 ;raxer/backend-sp4:${BUILD_NUMBER};g' ./MERN-app/backend/Production/front-end-deployment.yml """
-    	        sh "kubectl apply -f ./MERN-app/backend/Production/"
-            }
-        }
+        // stage('Deploy Image to Kubernetes') { 
+        //     steps {
+        //         sh """ sed -i 's;raxer/backend-sp4 ;raxer/frontend-sp4:${BUILD_NUMBER};g' ./MERN-app/backend/Production/backend-deployment.yml """
+        //         sh """ sed -i 's;raxer/backend-sp4 ;raxer/backend-sp4:${BUILD_NUMBER};g' ./MERN-app/backend/Production/front-end-deployment.yml """
+    	//         sh "kubectl apply -f ./MERN-app/backend/Production/"
+        //     }
+        // }
         stage('Delete Image') { 
             steps {
                 sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_FRONTEND:${BUILD_NUMBER}"
