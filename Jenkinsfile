@@ -1,6 +1,6 @@
-env.DOCKER_REGISTRY = credentials('raxer')
-env.DOCKER_IMAGE_FRONTEND = credentials('frontend-sp4')
-env.DOCKER_IMAGE_BACKEND = credentials('backend-sp4')
+env.DOCKER_REGISTRY = 'raxer'
+env.DOCKER_IMAGE_FRONTEND = 'frontend-sp4'
+env.DOCKER_IMAGE_BACKEND = 'backend-sp4'
 
 pipeline {
     agent any 
@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Docker Build Image') { 
             steps {
-                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_FRONTEND:${BUILD_NUMBER} MERN-app/"
-                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_BACKEND:${BUILD_NUMBER} MERN-app/backend"
+                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_FRONTEND:${BUILD_NUMBER} ./MERN-app/"
+                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_BACKEND:${BUILD_NUMBER} ./MERN-app/backend"
             }
         }
         stage('Push Docker Image') { 
