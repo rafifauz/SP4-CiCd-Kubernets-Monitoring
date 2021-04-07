@@ -16,7 +16,7 @@ pipeline {
                 sh "echo 'HAHAHA'"
             }
         }
-        stage('Cleaning FIle....') { 
+        stage('Cleaning FIle 1') { 
             steps {
                 cleanWs()
             }
