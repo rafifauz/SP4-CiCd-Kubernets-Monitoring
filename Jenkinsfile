@@ -15,11 +15,6 @@ pipeline {
                 sh "echo 'HAHAHA'"
             }
         }
-        stage('Cleaning FIle 1') { 
-            steps {
-                cleanWs()
-            }
-        }
         stage('Docker Build Image') { 
             steps {
                 sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_FRONTEND:${BUILD_NUMBER} ./MERN-app/"
