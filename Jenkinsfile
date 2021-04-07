@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Get File Github') { 
             steps {
-                sh "echo 'HAHAHA'"
+                sh "echo 'HAHAHi'"
                 sh "ls -la"
             }
         }
