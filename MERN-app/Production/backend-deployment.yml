@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: raxer/backend-sp4:latest
+          image: raxer/backend-sp4
           ports:
             - containerPort: 4000
               name: nodejs-port
