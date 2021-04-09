@@ -30,9 +30,9 @@ pipeline {
         }
         stage('Deploy Image to Kubernetes') { 
             steps {
-                sh """ sed -i 's;raxer/backend-sp4 ;raxer/frontend-sp4:${BUILD_NUMBER};g' ./MERN-app/backend/Production/backend-deployment.yml """
-                sh """ sed -i 's;raxer/backend-sp4 ;raxer/backend-sp4:${BUILD_NUMBER};g' ./MERN-app/backend/Production/front-end-deployment.yml """
-    	        sh "kubectl apply -f ./MERN-app/backend/Production/"
+                sh """ sed -i 's;raxer/backend-sp4 ;raxer/frontend-sp4:${BUILD_NUMBER};g' ./MERN-app/Production/backend-deployment.yml """
+                sh """ sed -i 's;raxer/backend-sp4 ;raxer/backend-sp4:${BUILD_NUMBER};g' ./MERN-app/Production/front-end-deployment.yml """
+    	        sh "kubectl apply -f ./MERN-app/Production/"
             }
         }
         stage('Delete Image') { 
